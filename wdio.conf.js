@@ -1,8 +1,12 @@
-import { EvincedWdioMobileSdk } from '@evinced/wdio-mobile-sdk';
-const evincedMobileSdk = new EvincedWdioMobileSdk();
+// import { EvincedWdioMobileSdk } from '@evinced/wdio-mobile-sdk';
+// const evincedMobileSdk = new EvincedWdioMobileSdk();
 
-import EvincedService from '@evinced/webdriverio-sdk';
-const Evinced = EvincedService.default;
+import EvincedService from '@evinced/webdriverio-sdk'; 
+const EvincedSDK = EvincedService.default;
+import path from 'path';
+
+// if no 'type: module' in package.json
+// const Evinced = require('@evinced/webdriverio-sdk').default;
 
 
 export const config = {
@@ -108,9 +112,9 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: [
-    //     [EvincedService.WdioService, { enableScreenshots: true }]
-    // ],
+    services: [
+        [EvincedSDK.WdioService, { enableScreenshots: true }]
+    ],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -155,12 +159,8 @@ export const config = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: function (config, capabilities) {
-        evincedMobileSdk.setupCredentials(
-            process.env.SERVICE_ACCOUNT_ID,
-            process.env.API_KEY
-        )
-    },
+    // onPrepare: function (config, capabilities) {
+    // },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -198,11 +198,18 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    before: function (capabilities, specs) {
-        Evinced.setCredentials({
+    before: async function (capabilities, specs) {
+        // await evincedMobileSdk.setupCredentials(
+        //     process.env.SERVICE_ACCOUNT_ID,
+        //     process.env.API_KEY
+        // )
+
+        await EvincedSDK.setCredentials({
             serviceId: process.env.SERVICE_ACCOUNT_ID,
             secret: process.env.API_KEY
         })
+        
+        // await browser.evStart()
     },
     /**
      * Runs before a WebdriverIO command gets executed.
@@ -270,8 +277,11 @@ export const config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+    after: async function (result, capabilities, specs) {
+        // const issues = await browser.evStop()
+        // console.log("---------", issues)
+        // await browser.evSaveFile(issues, "html", "./evinced-report.html");
+    },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {object} config wdio configuration object
