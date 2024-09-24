@@ -208,6 +208,8 @@ export const config = {
             serviceId: process.env.SERVICE_ACCOUNT_ID,
             secret: process.env.API_KEY
         })
+        
+        // await browser.evStart()
     },
     /**
      * Runs before a WebdriverIO command gets executed.
