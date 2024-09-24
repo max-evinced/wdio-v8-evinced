@@ -8,5 +8,6 @@ const pages = {
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
+    console.log("-----------------------\n", this.scenario)
     await pages[page].open()
 });
