@@ -13,6 +13,13 @@ export const config = {
                 './test/step-definitions/when.js',
                 './test/step-definitions/then.js'
             ]
-        }
+        },
+        beforeScenario: function (world, context) {
+            console.log("------------------Context, World\n", context, world)
+        },
+        beforeFeature: function (uri, feature) {
+            console.log("------------------feature\n", feature)
+            global.featureName = feature.name
+        },    
     }
 }
