@@ -10,4 +10,13 @@ const pages = {
 Given(/^I am on the (\w+) page$/, async (page) => {
     console.log("-----------------------Name: ", featureName)
     await pages[page].open()
+    await browser.evStart()
 });
+
+Given(/^I am on the Evinced Demo Page$/, async (page) => {
+    console.log("-----------------------Name: ", featureName)
+    await browser.evStart()
+    await browser.url("https://demo.evinced.com")
+});
+
+

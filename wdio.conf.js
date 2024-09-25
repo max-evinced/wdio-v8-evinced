@@ -113,6 +113,8 @@ export const config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [
+        // We add the Evinced Service here so that the `browser`
+        // object can use methods like evAnalyze(), evStart(), etc
         [EvincedSDK.WdioService, { enableScreenshots: true }]
     ],
     //
