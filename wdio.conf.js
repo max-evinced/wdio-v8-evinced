@@ -279,7 +279,6 @@ export const config = {
      */
     after: async function (result, capabilities, specs) {
         // const issues = await browser.evStop()
-        // console.log("---------", issues)
         // await browser.evSaveFile(issues, "html", "./evinced-report.html");
     },
     /**

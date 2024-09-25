@@ -12,8 +12,8 @@ Then(/^I should see a flash message saying (.*)$/, async (message) => {
     await expect(SecurePage.flashAlert).toHaveTextContaining(message);
 });
 
-Then(/^Stop Evinced$/, async (page) => {
-    const issues = await browser.evStop()
+Then(/^Stop Evinced$/, async () => {
+    // const issues = await browser.evStop()
     const date = Date.now()
-    await browser.evSaveFile(issues, "html", `./reports/${featureName}-report.html`)
+    // await browser.evSaveFile(issues, "html", `./reports/${featureName}-report.html`)
 });
