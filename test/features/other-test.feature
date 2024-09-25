@@ -5,6 +5,7 @@ Feature: This is another test to login
     Given I am on the login page
     When I login with <username> and <password>
     Then I should see a flash message saying <message>
+    Then Stop Evinced
 
     Examples:
       | username | password             | message                        |
