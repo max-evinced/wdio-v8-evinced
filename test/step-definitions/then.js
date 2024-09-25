@@ -13,7 +13,7 @@ Then(/^I should see a flash message saying (.*)$/, async (message) => {
 });
 
 Then(/^Stop Evinced$/, async () => {
+    console.log("THIS IS MY OUTPUT *>>>>")
     const issues = await browser.evStop()
-    const date = Date.now()
     await browser.evSaveFile(issues, "html", `./reports/${featureName}-report.html`)
 });

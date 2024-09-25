@@ -7,7 +7,6 @@ export const config = {
             './test/features/*.feature',
           ],
         cucumberOpts: {
-            // <string[]> (file/dir) require files before executing features
             require: [
                 './test/step-definitions/given.js',
                 './test/step-definitions/when.js',
