@@ -115,8 +115,13 @@ export const config = {
     services: [
         // We add the Evinced Service here so that the `browser`
         // object can use methods like evAnalyze(), evStart(), etc
-        [EvincedSDK.WdioService, { enableScreenshots: true }]
+        [EvincedSDK.WdioService, { enableScreenshots: true }],
+        ['sauce']
     ],
+    // Sauce Labs
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+    region: 'us',
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
