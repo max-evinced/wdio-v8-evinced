@@ -1,4 +1,7 @@
 import { config as sharedConfig} from "./wdio.conf.js"
+import EvincedService from '@evinced/webdriverio-sdk'; 
+const EvincedSDK = EvincedService.default;
+
 export const config = {
     ...sharedConfig,
     ...{
@@ -14,7 +17,8 @@ export const config = {
             timeout: 60000
         },
         services: [
-            ['sauce']
+            ['sauce'],
+            [EvincedSDK.WdioService, { enableScreenshots: true }]
         ],
         // Sauce Labs
         user: process.env.SAUCE_USERNAME,
