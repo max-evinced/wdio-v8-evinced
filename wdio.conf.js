@@ -115,7 +115,17 @@ export const config = {
     services: [
         // We add the Evinced Service here so that the `browser`
         // object can use methods like evAnalyze(), evStart(), etc
-        [EvincedSDK.WdioService, { enableScreenshots: true }]
+        [EvincedSDK.WdioService, { 
+            enableScreenshots: true, 
+            reporterOptions: {
+                generateAggregatedReport: true, // Enables the aggregated report feature. Mandatory.
+                deleteTmpFiles: true, // Deletes tmp files after the final report is generated. Optional. Default: true.
+                reportFormat: 'html', // Sets a desired format for the report. Available options are: html, sarif, and json. Optional. Default: html.
+                fileName: 'aggregatedReport.html', // Specifies a name of the final report. Optional. Default: aggregatedReport.html.
+                outputDir: './evincedReports', // Specifies a path to the final aggregated report file. Optional. Default: ./evincedReports.
+                tmpDir: './evincedReports/tmp' // A directory for storing Evinced tmp files. Optional. Default: ./evincedReports/tmp.
+            }
+         }]
     ],
     //
     // Framework you want to run your specs with.
